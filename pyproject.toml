@@ -24,6 +24,11 @@ classifiers = [
 ]
 dependencies = ["Django>=5.2,<6.2"]
 
+[project.urls]
+Homepage = "https://github.com/Atiqumer/django-querywatch"
+Repository = "https://github.com/Atiqumer/django-querywatch"
+Issues = "https://github.com/Atiqumer/django-querywatch/issues"
+
 [project.optional-dependencies]
 dev = [
     "build>=1.2",

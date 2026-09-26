@@ -2,6 +2,8 @@
 
 Automated database-performance analysis for Django.
 
+Source code and issue tracking: [Atiqumer/django-querywatch](https://github.com/Atiqumer/django-querywatch).
+
 QueryWatch observes database executions made by a Django request or test,
 groups query patterns, and turns suspicious behavior into explainable
 findings. It is a local-development and test/CI tool; it does not modify
