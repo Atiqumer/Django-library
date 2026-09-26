@@ -169,7 +169,7 @@ a fresh virtual environment before publishing:
 
 ```powershell
 python -m venv .wheel-test
-.\.wheel-test\Scripts\python -m pip install .\dist\django_query_sentinel-0.1.0-py3-none-any.whl
+.\.wheel-test\Scripts\python -m pip install .\dist\django_query_sentinel-0.1.1-py3-none-any.whl
 .\.wheel-test\Scripts\python -c "import querywatch; print(querywatch.__name__)"
 ```
 

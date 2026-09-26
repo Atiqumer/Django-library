@@ -33,8 +33,8 @@ publishing action. Do not add a PyPI token as a GitHub secret for this flow.
 4. Create and push a matching version tag:
 
    ```powershell
-   git tag v0.1.0
-   git push origin v0.1.0
+   git tag v0.1.1
+   git push origin v0.1.1
    ```
 
 5. The **Publish to PyPI** workflow verifies Ruff and tests, builds the wheel
