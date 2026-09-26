@@ -17,12 +17,33 @@ class QueryCollector:
 
     def __init__(self) -> None:
         self.records: list[QueryRecord] = []
+        self._capture_depth: dict[int, int] = {}
 
     @contextmanager
     def capture(self, connection: BaseDatabaseWrapper) -> Iterator[None]:
         """Capture executions made through ``connection`` for this scope."""
-        with connection.execute_wrapper(self._wrapper_for(connection.alias)):
-            yield
+        connection_id = id(connection)
+        depth = self._capture_depth.get(connection_id, 0)
+        self._capture_depth[connection_id] = depth + 1
+        if depth:
+            try:
+                yield
+            finally:
+                self._leave_capture(connection_id)
+            return
+
+        try:
+            with connection.execute_wrapper(self._wrapper_for(connection.alias)):
+                yield
+        finally:
+            self._leave_capture(connection_id)
+
+    def _leave_capture(self, connection_id: int) -> None:
+        depth = self._capture_depth[connection_id] - 1
+        if depth:
+            self._capture_depth[connection_id] = depth
+        else:
+            del self._capture_depth[connection_id]
 
     def _wrapper_for(self, database: str) -> Callable[..., Any]:
         def wrapper(
@@ -51,4 +72,3 @@ class QueryCollector:
                 )
 
         return wrapper
-
