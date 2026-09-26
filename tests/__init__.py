@@ -1,0 +1,2 @@
+"""QueryWatch test suite."""
+
