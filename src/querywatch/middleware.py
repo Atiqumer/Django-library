@@ -13,7 +13,6 @@ from .config import is_enabled, output_format
 from .reporters.console import format_console_report
 from .reporters.json import format_json_report
 
-
 logger = logging.getLogger("querywatch")
 
 

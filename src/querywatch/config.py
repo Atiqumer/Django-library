@@ -2,7 +2,6 @@
 
 from django.conf import settings
 
-
 DEFAULT_SLOW_QUERY_MS = 100.0
 DEFAULT_DUPLICATE_THRESHOLD = 3
 DEFAULT_MAX_QUERIES: int | None = None

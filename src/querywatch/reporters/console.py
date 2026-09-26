@@ -2,7 +2,6 @@
 
 from ..models import AnalysisReport, Finding
 
-
 _DIVIDER = "─" * 32
 
 
