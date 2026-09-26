@@ -27,6 +27,7 @@ dependencies = ["Django>=5.2,<6.2"]
 dev = [
     "pytest>=8.0",
     "pytest-django>=4.8",
+    "ruff>=0.8",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -37,3 +38,10 @@ testpaths = ["tests"]
 pythonpath = ["src"]
 DJANGO_SETTINGS_MODULE = "tests.settings"
 
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = ["E501"]

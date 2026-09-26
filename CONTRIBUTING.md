@@ -10,6 +10,7 @@ Use Python 3.12 or later:
 
 ```bash
 python -m pip install -e ".[dev]"
+python -m ruff check .
 python -m pytest
 ```
 
@@ -18,7 +19,7 @@ python -m pytest
 - Inspect existing behavior before changing it.
 - Keep a pull request focused on one feature or fix.
 - Add or update tests for every behavior change.
-- Run the entire test suite before opening a pull request.
+- Run Ruff and the entire test suite before opening a pull request.
 - Do not add runtime dependencies without a concrete, documented need.
 - Do not add automatic SQL re-execution, source-code rewriting, dashboards,
   cloud services, or AI dependencies to v0.1.

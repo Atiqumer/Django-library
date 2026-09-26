@@ -147,6 +147,7 @@ Requires Python 3.12+.
 
 ```bash
 python -m pip install -e ".[dev]"
+python -m ruff check .
 python -m pytest
 ```
 
