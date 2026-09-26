@@ -4,8 +4,8 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 .venv/
+.wheel-test/
 venv/
 build/
 dist/
 *.egg-info/
-

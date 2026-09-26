@@ -10,6 +10,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "MIT" }
 authors = [{ name = "QueryWatch contributors" }]
+keywords = ["database", "django", "performance", "queries"]
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "Framework :: Django",
@@ -25,6 +26,7 @@ dependencies = ["Django>=5.2,<6.2"]
 
 [project.optional-dependencies]
 dev = [
+    "build>=1.2",
     "pytest>=8.0",
     "pytest-django>=4.8",
     "ruff>=0.8",

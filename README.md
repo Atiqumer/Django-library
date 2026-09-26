@@ -154,6 +154,26 @@ python -m pytest
 Run the complete test suite before submitting a change. Tests use an isolated
 SQLite Django test database and require no network access.
 
+## Packaging verification
+
+Build both distribution formats locally:
+
+```bash
+python -m build
+```
+
+This creates a wheel and source distribution in `dist/`. Verify the wheel in
+a fresh virtual environment before publishing:
+
+```powershell
+python -m venv .wheel-test
+.\.wheel-test\Scripts\python -m pip install .\dist\django_querywatch-0.1.0-py3-none-any.whl
+.\.wheel-test\Scripts\python -c "import querywatch; print(querywatch.__name__)"
+```
+
+Replace the wheel filename if the package version changes. Do not publish
+until the wheel installs and imports successfully.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). Please keep changes small, add tests
