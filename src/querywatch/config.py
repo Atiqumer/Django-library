@@ -9,6 +9,8 @@ DEFAULT_SLOW_QUERY_MS = 100.0
 DEFAULT_DUPLICATE_THRESHOLD = 3
 DEFAULT_MAX_QUERIES: int | None = None
 DEFAULT_NPLUS1_THRESHOLD = 3
+DEFAULT_ENABLED = True
+DEFAULT_OUTPUT = "console"
 
 
 def slow_query_threshold_ms() -> float:
@@ -47,5 +49,23 @@ def nplus1_threshold() -> int:
     value = getattr(settings, "QUERYWATCH_NPLUS1_THRESHOLD", DEFAULT_NPLUS1_THRESHOLD)
     if isinstance(value, bool) or not isinstance(value, int) or value < 2:
         message = "QUERYWATCH_NPLUS1_THRESHOLD must be an integer of at least 2."
+        raise ValueError(message)
+    return value
+
+
+def is_enabled() -> bool:
+    """Return whether QueryWatch request instrumentation is enabled."""
+    value = getattr(settings, "QUERYWATCH_ENABLED", DEFAULT_ENABLED)
+    if not isinstance(value, bool):
+        message = "QUERYWATCH_ENABLED must be a boolean."
+        raise ValueError(message)
+    return value
+
+
+def output_format() -> str:
+    """Return the configured middleware output format."""
+    value = getattr(settings, "QUERYWATCH_OUTPUT", DEFAULT_OUTPUT)
+    if value not in {"console", "json", "none"}:
+        message = "QUERYWATCH_OUTPUT must be 'console', 'json', or 'none'."
         raise ValueError(message)
     return value
