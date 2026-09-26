@@ -7,6 +7,7 @@ from django.conf import settings
 
 DEFAULT_SLOW_QUERY_MS = 100.0
 DEFAULT_DUPLICATE_THRESHOLD = 3
+DEFAULT_MAX_QUERIES: int | None = None
 
 
 def slow_query_threshold_ms() -> float:
@@ -25,5 +26,16 @@ def duplicate_query_threshold() -> int:
     )
     if isinstance(value, bool) or not isinstance(value, int) or value < 2:
         message = "QUERYWATCH_DUPLICATE_THRESHOLD must be an integer of at least 2."
+        raise ValueError(message)
+    return value
+
+
+def max_queries() -> int | None:
+    """Return the configured query-count limit, if one is configured."""
+    value = getattr(settings, "QUERYWATCH_MAX_QUERIES", DEFAULT_MAX_QUERIES)
+    if value is None:
+        return None
+    if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+        message = "QUERYWATCH_MAX_QUERIES must be a non-negative integer or None."
         raise ValueError(message)
     return value
