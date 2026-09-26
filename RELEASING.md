@@ -13,7 +13,7 @@ Before the first release, create a pending trusted publisher on PyPI:
 
    | Field | Value |
    | --- | --- |
-   | PyPI project name | `django-querywatch` |
+   | PyPI project name | `django-query-sentinel` |
    | Owner | `Atiqumer` |
    | Repository name | `django-querywatch` |
    | Workflow filename | `publish.yml` |

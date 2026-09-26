@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "django-querywatch"
+name = "django-query-sentinel"
 version = "0.1.0"
 description = "Automated database-performance analysis for Django."
 readme = "README.md"

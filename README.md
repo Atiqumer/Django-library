@@ -35,7 +35,7 @@ planned before a stable release.
 After the package is published to PyPI:
 
 ```bash
-python -m pip install django-querywatch
+python -m pip install django-query-sentinel
 ```
 
 For development from a checkout, see [Development](#development).
@@ -169,7 +169,7 @@ a fresh virtual environment before publishing:
 
 ```powershell
 python -m venv .wheel-test
-.\.wheel-test\Scripts\python -m pip install .\dist\django_querywatch-0.1.0-py3-none-any.whl
+.\.wheel-test\Scripts\python -m pip install .\dist\django_query_sentinel-0.1.0-py3-none-any.whl
 .\.wheel-test\Scripts\python -c "import querywatch; print(querywatch.__name__)"
 ```
 
