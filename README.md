@@ -176,6 +176,8 @@ python -m venv .wheel-test
 Replace the wheel filename if the package version changes. Do not publish
 until the wheel installs and imports successfully.
 
+For the tag-based Trusted Publishing release process, see [RELEASING.md](RELEASING.md).
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). Please keep changes small, add tests
