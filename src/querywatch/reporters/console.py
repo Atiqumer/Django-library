@@ -1,7 +1,5 @@
 """Plain-text QueryWatch report formatting."""
 
-from __future__ import annotations
-
 from ..models import AnalysisReport, Finding
 
 

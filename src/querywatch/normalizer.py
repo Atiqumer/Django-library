@@ -1,7 +1,5 @@
 """Conservative SQL normalization and deterministic fingerprinting."""
 
-from __future__ import annotations
-
 import re
 from hashlib import sha256
 
