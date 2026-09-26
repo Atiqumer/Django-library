@@ -19,3 +19,15 @@ class QueryRecord:
     many: bool
     success: bool
 
+
+@dataclass(frozen=True, slots=True)
+class QueryAggregate:
+    """Aggregate execution statistics for one normalized SQL fingerprint."""
+
+    fingerprint: str
+    normalized_sql: str
+    execution_count: int
+    total_duration_ms: float
+    average_duration_ms: float
+    minimum_duration_ms: float
+    maximum_duration_ms: float
