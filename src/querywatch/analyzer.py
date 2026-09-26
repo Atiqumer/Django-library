@@ -2,10 +2,14 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterable
+from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 
-from .models import QueryAggregate, QueryRecord
+from .detectors.duplicate import detect_duplicate_queries
+from .detectors.nplus1 import detect_possible_n_plus_one
+from .detectors.query_count import detect_query_count
+from .detectors.slow import detect_slow_queries
+from .models import AnalysisReport, QueryAggregate, QueryRecord, QuerySummary
 from .normalizer import fingerprint_normalized_sql, normalize_sql
 
 
@@ -61,3 +65,26 @@ def aggregate_queries(records: Iterable[QueryRecord]) -> dict[str, QueryAggregat
         )
         for fingerprint, accumulator in accumulators.items()
     }
+
+
+def analyze_queries(records: Sequence[QueryRecord]) -> AnalysisReport:
+    """Analyze one query-collection scope and return its complete report."""
+    aggregates = aggregate_queries(records)
+    slow_findings = detect_slow_queries(records)
+    duplicate_findings = detect_duplicate_queries(aggregates.values())
+    count_findings = detect_query_count(records)
+    nplus1_findings = detect_possible_n_plus_one(records)
+
+    findings = tuple(
+        slow_findings + duplicate_findings + count_findings + nplus1_findings
+    )
+    return AnalysisReport(
+        summary=QuerySummary(
+            query_count=len(records),
+            total_duration_ms=sum(record.duration_ms for record in records),
+            slow_query_count=len(slow_findings),
+            duplicate_group_count=len(duplicate_findings),
+        ),
+        aggregates=tuple(aggregates.values()),
+        findings=findings,
+    )

@@ -45,3 +45,22 @@ class Finding:
     evidence: Mapping[str, object]
     suggestion: str | None
     fingerprint: str | None
+
+
+@dataclass(frozen=True, slots=True)
+class QuerySummary:
+    """Top-level statistics for one completed analysis scope."""
+
+    query_count: int
+    total_duration_ms: float
+    slow_query_count: int
+    duplicate_group_count: int
+
+
+@dataclass(frozen=True, slots=True)
+class AnalysisReport:
+    """A complete, in-memory QueryWatch analysis result."""
+
+    summary: QuerySummary
+    aggregates: tuple[QueryAggregate, ...]
+    findings: tuple[Finding, ...]
